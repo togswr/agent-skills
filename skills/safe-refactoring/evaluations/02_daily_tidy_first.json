@@ -1,0 +1,21 @@
+{
+  "skills": ["safe-refactoring"],
+  "query": "このコードを整理したいが、今すぐやるべきか後でやるべきか判断に迷っている。",
+  "files": [],
+  "expected_behavior": [
+    "Tidy First? の4つの選択肢（First/After/Later/Never）を提示する",
+    "判断基準を示す（変更が容易になるか、コストと利益の比較）",
+    "構造変更と振る舞い変更の分離を提案する",
+    "コミット/PR の分離戦略を示す"
+  ],
+  "scoring_rubric": {
+    "pass": "4項目すべて満たす",
+    "partial": "3項目を満たす",
+    "fail": "2項目以下"
+  },
+  "model_checks": {
+    "haiku": "4つの選択肢が明示されていること",
+    "sonnet": "判断基準が具体的であること",
+    "opus": "経済的視点の説明が過剰にならないこと"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "skills": ["safe-refactoring"],
+  "query": "テストがないレガシーコードにバグ修正を加えたい。安全に変更する手順を提案して。",
+  "files": [],
+  "expected_behavior": [
+    "Legacy Code Change Algorithm の5ステップに沿った手順を提示する",
+    "特性テスト（Characterization Test）の作成を提案する",
+    "Seamsの活用を検討する",
+    "小さなステップでの進め方を示す"
+  ],
+  "scoring_rubric": {
+    "pass": "4項目すべて満たす",
+    "partial": "3項目を満たす",
+    "fail": "2項目以下"
+  },
+  "model_checks": {
+    "haiku": "Legacy Code Change Algorithm のステップが漏れなく示されること",
+    "sonnet": "テスト追加と変更のバランスが適切であること",
+    "opus": "過度な理論説明なく実践的な手順になっていること"
+  }
+}
