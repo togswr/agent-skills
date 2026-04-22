@@ -148,7 +148,8 @@ description: |
 
 ## 参照資料
 
-- [コードスメルカタログ](references/code-smells.md) - 24のコードスメルと対策
+- [コードスメルカタログ](references/code-smells.md) - Fowler 24のコードスメルと対策
+- [Clean Codeヒューリスティクス](references/clean-code-heuristics.md) - Clean Code 63のスメルとFowler対応
 - [リファクタリングカタログ](references/refactoring-catalog.md) - 主要リファクタリング手法一覧
 - [レガシーコード対応テクニック](references/legacy-techniques.md) - 依存関係解消、Seams、特性テスト
 - [Tidy First? アプローチ](references/tidy-first.md) - 15のTidyingsと経済的判断基準
