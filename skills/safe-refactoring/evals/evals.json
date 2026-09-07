@@ -1,0 +1,44 @@
+{
+  "skill_name": "safe-refactoring",
+  "evals": [
+    {
+      "id": 1,
+      "name": "legacy-code-improvement",
+      "prompt": "テストがないレガシーコードにバグ修正を加えたい。安全に変更する手順を提案して。",
+      "expected_output": "Legacy Code Change Algorithm の 5 ステップに沿った手順、特性テストの作成、Seams の活用、小さなステップでの進め方の 4 点を提示した回答",
+      "files": [],
+      "assertions": [
+        "Legacy Code Change Algorithm の5ステップに沿った手順を提示する",
+        "特性テスト（Characterization Test）の作成を提案する",
+        "Seamsの活用を検討する",
+        "小さなステップでの進め方を示す"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "daily-tidy-first",
+      "prompt": "このコードを整理したいが、今すぐやるべきか後でやるべきか判断に迷っている。",
+      "expected_output": "Tidy First? の First/After/Later/Never の 4 つの選択肢、変更の容易さとコスト対利益による判断基準、構造変更と振る舞い変更の分離、コミット/PR の分離戦略の 4 点を提示した回答",
+      "files": [],
+      "assertions": [
+        "Tidy First? の4つの選択肢（First/After/Later/Never）を提示する",
+        "判断基準を示す（変更が容易になるか、コストと利益の比較）",
+        "構造変更と振る舞い変更の分離を提案する",
+        "コミット/PR の分離戦略を示す"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "large-scale-refactoring-plan",
+      "prompt": "レガシーなモジュールを新しい設計に段階的に移行したい。リファクタリング計画を立てて。",
+      "expected_output": "Strangler Fig と Branch by Abstraction を含む大規模リファクタリングパターンの選定、リファクタリング計画テンプレートに沿った計画、段階的な移行ステップ、リスクと対策の 4 点を提示した回答",
+      "files": [],
+      "assertions": [
+        "大規模リファクタリングパターンの選定を提案する（Strangler Fig / Branch by Abstraction 等）",
+        "リファクタリング計画テンプレートに沿った計画を提示する",
+        "段階的な移行ステップを示す",
+        "リスクと対策を含める"
+      ]
+    }
+  ]
+}

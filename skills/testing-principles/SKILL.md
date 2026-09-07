@@ -68,6 +68,6 @@ version: 2.0.0
 
 ## 検証
 
-- `bash skill-creator/scripts/validate-skill.sh testing-principles`
-- `bunx markdown-link-check testing-principles/SKILL.md`
-- `find testing-principles -name "*.md" -exec bunx markdown-link-check {} \\;`
+- 静的チェック: `bash ../skill-creator/scripts/validate-skill.sh "$PWD"`（このスキルのディレクトリで実行）
+- `bunx markdown-link-check SKILL.md`
+- `find . -name "*.md" -exec bunx markdown-link-check {} \;`
