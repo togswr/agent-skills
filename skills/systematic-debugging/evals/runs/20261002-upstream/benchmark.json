@@ -1,0 +1,303 @@
+{
+  "metadata": {
+    "skill_name": "systematic-debugging",
+    "skill_path": "/home/togswr/.agents/skills/systematic-debugging",
+    "executor_model": "sonnet",
+    "timestamp": "2026-10-02T16:00:00+09:00",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "symptom-far-from-source",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 15.5,
+        "tokens": 45788
+      },
+      "assertion_results": [
+        {
+          "text": "修正が report/config.py の読む環境変数名を REPORT_OUTPUT_DIR に合わせる変更を含む",
+          "passed": true,
+          "evidence": "diff で config.py の読み取り名が REPORT_OUTPUT_DIR に変わっている"
+        },
+        {
+          "text": "report/writer.py に、空の出力先を受け入れて処理を続けるガード（dirname が空なら makedirs を飛ばすなど）を加えていない",
+          "passed": true,
+          "evidence": "diff に writer.py の変更がない"
+        },
+        {
+          "text": "原因を再現するテストを追加し、修正前にそのテストが失敗することを実行して確かめている",
+          "passed": true,
+          "evidence": "tests/test_config.py が追加され、回答に修正前は失敗し修正後は通ると明記"
+        },
+        {
+          "text": "修正後に ./run.sh を実行し、REPORT_OUTPUT_DIR が指すディレクトリに daily.md が書かれたことを確かめている",
+          "passed": true,
+          "evidence": "回答に ./run.sh の出力確認と out/.../daily.md への出力が明記されている"
+        },
+        {
+          "text": "最終回答が、環境変数名の不一致から output_dir が空文字になり makedirs('') が失敗するまでのつながりを説明している",
+          "passed": true,
+          "evidence": "回答が名前不一致から output_dir 空文字、makedirs('') の失敗までを説明している"
+        }
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "symptom-far-from-source",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 12.8,
+        "tokens": 40925
+      },
+      "assertion_results": [
+        {
+          "text": "修正が report/config.py の読む環境変数名を REPORT_OUTPUT_DIR に合わせる変更を含む",
+          "passed": true,
+          "evidence": "diff で config.py の読み取り名が REPORT_OUTPUT_DIR に変わっている"
+        },
+        {
+          "text": "report/writer.py に、空の出力先を受け入れて処理を続けるガード（dirname が空なら makedirs を飛ばすなど）を加えていない",
+          "passed": true,
+          "evidence": "diff に writer.py の変更がない"
+        },
+        {
+          "text": "原因を再現するテストを追加し、修正前にそのテストが失敗することを実行して確かめている",
+          "passed": false,
+          "evidence": "再現テストが追加されておらず回答にも言及がない"
+        },
+        {
+          "text": "修正後に ./run.sh を実行し、REPORT_OUTPUT_DIR が指すディレクトリに daily.md が書かれたことを確かめている",
+          "passed": true,
+          "evidence": "回答に ./run.sh を再実行し out/20261002/daily.md が出力されたと明記"
+        },
+        {
+          "text": "最終回答が、環境変数名の不一致から output_dir が空文字になり makedirs('') が失敗するまでのつながりを説明している",
+          "passed": true,
+          "evidence": "回答が名前不一致から空文字、dirname が ''、makedirs('') の失敗までを説明している"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "misleading-user-hypothesis",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 20.0,
+        "tokens": 45433
+      },
+      "assertion_results": [
+        {
+          "text": "blog/slug.py の slugify のアクセント処理を変更していない",
+          "passed": true,
+          "evidence": "diff に slug.py の変更がない"
+        },
+        {
+          "text": "修正が blog/publish.py の、slugify より前に非 ASCII 文字を落とす前処理を対象にしている",
+          "passed": true,
+          "evidence": "diff が publish.py の strip_emoji 削除である"
+        },
+        {
+          "text": "最終回答が、slugify 自体はアクセントを正しく処理することを実行結果などの根拠付きで伝えている",
+          "passed": true,
+          "evidence": "回答が slugify 単体は cafe-deja-vu を返していたと根拠付きで伝えている"
+        },
+        {
+          "text": "修正後に python3 -m blog.publish \"Café Déjà Vu\" を実行し、cafe-deja-vu を含む URL が出ることを確かめている",
+          "passed": true,
+          "evidence": "回答に python3 -m blog.publish の実行と cafe-deja-vu の URL が明記されている"
+        },
+        {
+          "text": "article_url か publish の経路で症状を再現するテストを追加し、修正前にそのテストが失敗することを実行して確かめている",
+          "passed": true,
+          "evidence": "test_publish.py が article_url を検証し、回答に修正前の失敗確認が明記されている"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "misleading-user-hypothesis",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 2,
+        "failed": 3,
+        "total": 5,
+        "time_seconds": 10.8,
+        "tokens": 39748
+      },
+      "assertion_results": [
+        {
+          "text": "blog/slug.py の slugify のアクセント処理を変更していない",
+          "passed": true,
+          "evidence": "diff に slug.py の変更がない"
+        },
+        {
+          "text": "修正が blog/publish.py の、slugify より前に非 ASCII 文字を落とす前処理を対象にしている",
+          "passed": true,
+          "evidence": "diff が publish.py の strip_emoji の削除である"
+        },
+        {
+          "text": "最終回答が、slugify 自体はアクセントを正しく処理することを実行結果などの根拠付きで伝えている",
+          "passed": false,
+          "evidence": "回答が placeholder で slugify の正しさを伝えていない"
+        },
+        {
+          "text": "修正後に python3 -m blog.publish \"Café Déjà Vu\" を実行し、cafe-deja-vu を含む URL が出ることを確かめている",
+          "passed": false,
+          "evidence": "回答が placeholder で実行の明記がない"
+        },
+        {
+          "text": "article_url か publish の経路で症状を再現するテストを追加し、修正前にそのテストが失敗することを実行して確かめている",
+          "passed": false,
+          "evidence": "test_publish.py は追加されているが、回答が placeholder で修正前失敗の実行確認が明記されていない"
+        }
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "report-only-with-bait-commit",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": 16.6,
+        "tokens": 45829
+      },
+      "assertion_results": [
+        {
+          "text": "作業ツリーの total.py と sales.csv を変更していない",
+          "passed": true,
+          "evidence": "差分が空で total.py と sales.csv は未変更"
+        },
+        {
+          "text": "原因として、10/01 の行の引用符で囲まれたカンマを split(\",\") が分割し、例外を握りつぶす処理でその行が捨てられることを特定している",
+          "passed": true,
+          "evidence": "回答が引用符内カンマの split と例外握りつぶしによる行脱落を特定している"
+        },
+        {
+          "text": "「変数名を整理」の commit が原因でないことを、差分が名前の変更だけであることか、変更前の版でも同じ結果になることを根拠に示している",
+          "passed": true,
+          "evidence": "回答が 初版でも 3,750 と同じ結果になると明記 を根拠に変数名整理 commit を原因から除外している"
+        },
+        {
+          "text": "最終回答が、実行や差分で確かめた事実と、確かめていない推測を区別して書いている",
+          "passed": false,
+          "evidence": "確認済みの事実と未確認の推測を明示的に区別する記述が回答にない"
+        }
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "report-only-with-bait-commit",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.75,
+        "passed": 3,
+        "failed": 1,
+        "total": 4,
+        "time_seconds": 12.0,
+        "tokens": 40967
+      },
+      "assertion_results": [
+        {
+          "text": "作業ツリーの total.py と sales.csv を変更していない",
+          "passed": true,
+          "evidence": "差分が空で total.py と sales.csv は未変更"
+        },
+        {
+          "text": "原因として、10/01 の行の引用符で囲まれたカンマを split(\",\") が分割し、例外を握りつぶす処理でその行が捨てられることを特定している",
+          "passed": true,
+          "evidence": "回答が引用符内カンマの split と例外握りつぶしによる行脱落を特定している"
+        },
+        {
+          "text": "「変数名を整理」の commit が原因でないことを、差分が名前の変更だけであることか、変更前の版でも同じ結果になることを根拠に示している",
+          "passed": true,
+          "evidence": "回答が 差分を確認済みと明記 を根拠に変数名整理 commit を原因から除外している"
+        },
+        {
+          "text": "最終回答が、実行や差分で確かめた事実と、確かめていない推測を区別して書いている",
+          "passed": false,
+          "evidence": "確認済みの事実と未確認の推測を明示的に区別する記述が回答にない"
+        }
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.917,
+        "stddev": 0.144,
+        "min": 0.75,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 17.367,
+        "stddev": 2.346,
+        "min": 15.5,
+        "max": 20.0
+      },
+      "tokens": {
+        "mean": 45683.333,
+        "stddev": 217.762,
+        "min": 45433,
+        "max": 45829
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.65,
+        "stddev": 0.218,
+        "min": 0.4,
+        "max": 0.8
+      },
+      "time_seconds": {
+        "mean": 11.867,
+        "stddev": 1.007,
+        "min": 10.8,
+        "max": 12.8
+      },
+      "tokens": {
+        "mean": 40546.667,
+        "stddev": 691.984,
+        "min": 39748,
+        "max": 40967
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.267",
+      "time_seconds": "+5.500",
+      "tokens": "+5136.666"
+    }
+  },
+  "notes": [
+    "without_skill の misleading-user-hypothesis は最終回答が placeholder だけで返り、修正とテストは差分上は正しい",
+    "report-only-with-bait-commit の事実と推測を区別する assertion は全構成で NO。3 構成とも報告内容がすべて実行か差分で確かめた事実で、区別すべき推測が無かった。assertion の設計の問題として次の周で見直す"
+  ]
+}

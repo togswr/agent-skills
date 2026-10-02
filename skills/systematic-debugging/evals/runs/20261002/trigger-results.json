@@ -1,0 +1,72 @@
+[
+  {
+    "query": "npm run build が昨日から TypeError で落ちるようになった。原因を調べて直して",
+    "should_trigger": true,
+    "triggers": 3,
+    "runs": 3,
+    "trigger_rate": 1.0
+  },
+  {
+    "query": "スワイプすると画面ごとクラッシュする。エラーも出ない。根本原因を特定して",
+    "should_trigger": true,
+    "triggers": 3,
+    "runs": 3,
+    "trigger_rate": 1.0
+  },
+  {
+    "query": "CI の e2e テストがたまに落ちる。何が原因か調査して",
+    "should_trigger": true,
+    "triggers": 3,
+    "runs": 3,
+    "trigger_rate": 1.0
+  },
+  {
+    "query": "さっきの修正を入れたのに、保存ボタンを押すとまだ二重送信される",
+    "should_trigger": true,
+    "triggers": 3,
+    "runs": 3,
+    "trigger_rate": 1.0
+  },
+  {
+    "query": "集計結果が帳簿と 1,200 円ずれている。理由を調べて報告して",
+    "should_trigger": true,
+    "triggers": 3,
+    "runs": 3,
+    "trigger_rate": 1.0
+  },
+  {
+    "query": "ユーザー一覧画面にページネーションを追加して",
+    "should_trigger": false,
+    "triggers": 0,
+    "runs": 3,
+    "trigger_rate": 0.0
+  },
+  {
+    "query": "この関数が長すぎるので、振る舞いを変えずに分割して",
+    "should_trigger": false,
+    "triggers": 0,
+    "runs": 3,
+    "trigger_rate": 0.0
+  },
+  {
+    "query": "テストのカバレッジを上げたいので、どこにテストを足すべきか方針を整理して",
+    "should_trigger": false,
+    "triggers": 0,
+    "runs": 3,
+    "trigger_rate": 0.0
+  },
+  {
+    "query": "原因は分かっていて、config.py の環境変数名を REPORT_OUTPUT_DIR に変えるだけ。直しておいて",
+    "should_trigger": false,
+    "triggers": 0,
+    "runs": 3,
+    "trigger_rate": 0.0
+  },
+  {
+    "query": "このエラーメッセージの文言を、利用者に分かりやすい日本語に直して",
+    "should_trigger": false,
+    "triggers": 0,
+    "runs": 3,
+    "trigger_rate": 0.0
+  }
+]

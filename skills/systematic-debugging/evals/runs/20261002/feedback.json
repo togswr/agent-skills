@@ -1,0 +1,5 @@
+{
+  "eval-symptom-far-from-source": "",
+  "eval-misleading-user-hypothesis": "",
+  "eval-report-only-with-bait-commit": "事実と推測の区別を問う assertion は、推測が生じない題材では判定できない。題材か assertion を見直す"
+}

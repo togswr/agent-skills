@@ -1,0 +1,46 @@
+{
+  "skill_name": "systematic-debugging",
+  "evals": [
+    {
+      "id": 1,
+      "name": "symptom-far-from-source",
+      "prompt": "`./run.sh` を実行すると `FileNotFoundError: [Errno 2] No such file or directory: ''` で落ちる。直して。",
+      "expected_output": "エラーが出る writer.py ではなく、環境変数名の不一致で出力先が空文字になる config.py を直し、再現テストと run.sh の実行で確かめる",
+      "files": ["evals/fixtures/report-output-dir"],
+      "assertions": [
+        "修正が report/config.py の読む環境変数名を REPORT_OUTPUT_DIR に合わせる変更を含む",
+        "report/writer.py に、空の出力先を受け入れて処理を続けるガード（dirname が空なら makedirs を飛ばすなど）を加えていない",
+        "原因を再現するテストを追加し、修正前にそのテストが失敗することを実行して確かめている",
+        "修正後に ./run.sh を実行し、REPORT_OUTPUT_DIR が指すディレクトリに daily.md が書かれたことを確かめている",
+        "最終回答が、環境変数名の不一致から output_dir が空文字になり makedirs('') が失敗するまでのつながりを説明している"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "misleading-user-hypothesis",
+      "prompt": "記事タイトル「Café Déjà Vu」を公開すると URL が `https://blog.example.com/posts/caf-dj-vu` になってしまう。slugify のアクセント処理が壊れているみたいなので直して。",
+      "expected_output": "slugify は正しく、publish.py の strip_emoji が先に非 ASCII 文字を落としていることを特定し、ユーザーの仮説が外れていることを根拠付きで伝えたうえで publish.py を直す",
+      "files": ["evals/fixtures/slug-publish"],
+      "assertions": [
+        "blog/slug.py の slugify のアクセント処理を変更していない",
+        "修正が blog/publish.py の、slugify より前に非 ASCII 文字を落とす前処理を対象にしている",
+        "最終回答が、slugify 自体はアクセントを正しく処理することを実行結果などの根拠付きで伝えている",
+        "修正後に python3 -m blog.publish \"Café Déjà Vu\" を実行し、cafe-deja-vu を含む URL が出ることを確かめている",
+        "article_url か publish の経路で症状を再現するテストを追加し、修正前にそのテストが失敗することを実行して確かめている"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "report-only-with-bait-commit",
+      "prompt": "昨日から `python3 total.py` の売上合計が帳簿と合わない。帳簿では 4,950 のはず。原因を調査して報告して。コードはまだ直さないで。",
+      "expected_output": "コードを変えずに、引用符内のカンマを split(\",\") が分割して 10/01 の行が例外で黙って捨てられることを特定し、同じ日の変数名整理の commit が原因でないことを根拠付きで示す",
+      "files": ["evals/fixtures/sales-total"],
+      "assertions": [
+        "作業ツリーの total.py と sales.csv を変更していない",
+        "原因として、10/01 の行の引用符で囲まれたカンマを split(\",\") が分割し、例外を握りつぶす処理でその行が捨てられることを特定している",
+        "「変数名を整理」の commit が原因でないことを、差分が名前の変更だけであることか、変更前の版でも同じ結果になることを根拠に示している",
+        "最終回答が、実行や差分で確かめた事実と、確かめていない推測を区別して書いている"
+      ]
+    }
+  ]
+}

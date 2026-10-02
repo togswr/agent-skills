@@ -1,0 +1,35 @@
+{
+ "assertion_results": [
+  {
+   "text": "blog/slug.py の slugify のアクセント処理を変更していない",
+   "passed": true,
+   "evidence": "diff に slug.py の変更がない"
+  },
+  {
+   "text": "修正が blog/publish.py の、slugify より前に非 ASCII 文字を落とす前処理を対象にしている",
+   "passed": true,
+   "evidence": "diff が publish.py の strip_emoji の削除である"
+  },
+  {
+   "text": "最終回答が、slugify 自体はアクセントを正しく処理することを実行結果などの根拠付きで伝えている",
+   "passed": false,
+   "evidence": "回答が placeholder で slugify の正しさを伝えていない"
+  },
+  {
+   "text": "修正後に python3 -m blog.publish \"Café Déjà Vu\" を実行し、cafe-deja-vu を含む URL が出ることを確かめている",
+   "passed": false,
+   "evidence": "回答が placeholder で実行の明記がない"
+  },
+  {
+   "text": "article_url か publish の経路で症状を再現するテストを追加し、修正前にそのテストが失敗することを実行して確かめている",
+   "passed": false,
+   "evidence": "test_publish.py は追加されているが、回答が placeholder で修正前失敗の実行確認が明記されていない"
+  }
+ ],
+ "summary": {
+  "passed": 2,
+  "failed": 3,
+  "total": 5,
+  "pass_rate": 0.4
+ }
+}
