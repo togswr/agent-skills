@@ -14,7 +14,7 @@ Michael Feathers「Working Effectively with Legacy Code」に基づくレガシ�
 - [Sensing and Separation](#sensing-and-separation)
 - [Effect SketchesとPinch Points](#effect-sketchesとpinch-points)
 - [Scratch Refactoring](#scratch-refactoring)
-- [Seams（縫い目）](#seams縫い目) - Object Seam, Link Seam, Preprocessing Seam
+- [Seams](#seams) - Object Seam, Link Seam, Preprocessing Seam
 
 ## レガシーコードの定義
 
@@ -44,12 +44,12 @@ Michael Feathers「Working Effectively with Legacy Code」に基づくレガシ�
 
 ## アプローチの比較
 
-### Edit and Pray（祈りながら編集）
+### Edit and Pray
 
 - 変更後に「壊れていないこと」を祈る
 - 業界標準だが危険
 
-### Cover and Modify（カバーして変更）
+### Cover and Modify
 
 - テストという安全網の下で変更
 - **推奨アプローチ**
@@ -159,7 +159,7 @@ Feathersは24のテクニックを定義。これらはテストなしで実行�
 
 ## 安全な変更戦略
 
-### Sprout Method（芽生えメソッド）
+### Sprout Method
 
 新しい機能を新しいメソッドとして追加し、既存コードから呼び出す。
 
@@ -176,7 +176,7 @@ Feathersは24のテクニックを定義。これらはテストなしで実行�
 - 変更を個別に確認できる
 - 新旧コード間のインターフェースがクリーン
 
-### Sprout Class（芽生えクラス）
+### Sprout Class
 
 Sprout Methodの大規模版。新機能をクラス単位で分離。
 
@@ -189,7 +189,7 @@ Sprout Methodの大規模版。新機能をクラス単位で分離。
 - 侵襲的な変更を避けられる
 - 後でソースクラスをテスト下に置くことができる
 
-### Wrap Method（ラップメソッド）
+### Wrap Method
 
 既存のメソッドをラップして、新しい機能を追加。
 
@@ -206,7 +206,7 @@ Sprout Methodの大規模版。新機能をクラス単位で分離。
 - 既存のメソッドのサイズを増やさない
 - 新しい機能を既存の機能から明示的に独立させる
 
-### Wrap Class（ラップクラス）
+### Wrap Class
 
 Decoratorパターン。既存のクラスをラップする新しいクラスを作成。
 
@@ -256,7 +256,7 @@ Decoratorパターン。既存のクラスをラップする新しいクラス�
 - **ルール**: すべての変更を最後に破棄
 - **自由**: バグを気にせず実験的リファクタリング可能
 
-## Seams（縫い目）
+## Seams
 
 > "A seam is a place where you can alter behavior in your program without editing in that place."
 > — Michael Feathers
